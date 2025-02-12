@@ -5,6 +5,7 @@ plugins {
 android {
     namespace 'br.com.matotvron.tccgymmanagementapp'
     compileSdk 35
+    android.buildFeatures.buildConfig true
 
     defaultConfig {
         applicationId "br.com.matotvron.tccgymmanagementapp"
@@ -20,6 +21,13 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "boolean", "DEV", "false"
+        }
+
+        debug {
+            buildConfigField "boolean", "DEV", "true"
+            versionNameSuffix 'debug'
+            debuggable true
         }
     }
     compileOptions {
@@ -37,4 +45,8 @@ dependencies {
     testImplementation libs.junit
     androidTestImplementation libs.ext.junit
     androidTestImplementation libs.espresso.core
+
+    implementation libs.core.splashscreen
+
+    implementation(libs.okhttp)
 }
