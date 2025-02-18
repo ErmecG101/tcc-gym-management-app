@@ -1,5 +1,6 @@
 package br.com.matotvron.tccgymmanagementapp.telas.debug;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -15,10 +16,11 @@ import br.com.matotvron.tccgymmanagementapp.R;
 import br.com.matotvron.tccgymmanagementapp.background.http.DefaultRequest;
 import br.com.matotvron.tccgymmanagementapp.background.tasks.TaskResults;
 import br.com.matotvron.tccgymmanagementapp.background.tasks.users.GetAllUsersTask;
+import br.com.matotvron.tccgymmanagementapp.telas.LoginActivity;
 
 public class DebugActivity extends AppCompatActivity {
 
-    private Button btnTestRequest;
+    private Button btnTestRequest, btnLoginScreen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,7 @@ public class DebugActivity extends AppCompatActivity {
         });
 
         btnTestRequest = findViewById(R.id.btnTestRequest);
+        btnLoginScreen = findViewById(R.id.btnLoginScreen);
 
         btnTestRequest.setOnClickListener((v) -> {
             Toast.makeText(this, "Request enviada!", Toast.LENGTH_SHORT).show();
@@ -50,6 +53,10 @@ public class DebugActivity extends AppCompatActivity {
                 }
             };
             task.execute();
+        });
+
+        btnLoginScreen.setOnClickListener((v) -> {
+            startActivity(new Intent(getApplicationContext(), LoginActivity.class));
         });
     }
 }

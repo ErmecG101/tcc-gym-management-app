@@ -2,7 +2,9 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.TccGymManagementApp" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+<!--         <item name="colorPrimary">#FF0000</item>-->
+        <item name="loginBackgroundColorOne">@color/login_background_light_1</item>
+        <item name="loginBackgroundColorTwo">@color/login_background_light_2</item>
     </style>
 
     <style name="Theme.TccGymManagementApp" parent="Base.Theme.TccGymManagementApp" />

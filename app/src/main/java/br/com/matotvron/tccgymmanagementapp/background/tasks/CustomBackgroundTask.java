@@ -10,9 +10,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.matotvron.tccgymmanagementapp.R;
 import br.com.matotvron.tccgymmanagementapp.background.exceptions.FalhaRequestException;
 import br.com.matotvron.tccgymmanagementapp.background.exceptions.FalhaServidorException;
 import br.com.matotvron.tccgymmanagementapp.background.exceptions.FaltaPermissaoException;
+import br.com.matotvron.tccgymmanagementapp.dialogs.ExceptionDialog;
 
 public abstract class CustomBackgroundTask{
 
@@ -20,7 +22,7 @@ public abstract class CustomBackgroundTask{
     final protected Context context;
     protected String locale = "";
     private Thread backgroundThread;
-
+    private Exception exception;
     protected String bodyJson;
 
     public CustomBackgroundTask(Context context) {
@@ -30,7 +32,10 @@ public abstract class CustomBackgroundTask{
     protected abstract void preExecuteBackground();
     protected abstract TaskResults executeBackground() throws FaltaPermissaoException, FalhaServidorException, FalhaRequestException, IOException;
 
-    protected abstract void postExecuteBackground(TaskResults taskResults);
+    protected void postExecuteBackground(TaskResults taskResults){
+        if(exception != null)
+            ((Activity) context).runOnUiThread(() -> handleException(taskResults, exception));
+    }
 
     public void execute(){
         if (!validatePermissions()){
@@ -39,25 +44,34 @@ public abstract class CustomBackgroundTask{
 
         preExecuteBackground();
         backgroundThread = new Thread(() -> {
-           final TaskResults result = backgroundExecution();
-            ((Activity) context).runOnUiThread(() -> postExecuteBackground(result));
+            TaskResults result;
+            try {
+                result = backgroundExecution();
+            }catch (IOException e) {
+                result = TaskResults.IOEXCEPTION;
+                exception = e;
+            }catch (FalhaServidorException e){
+                result = TaskResults.SERVER_ERROR;
+                exception = e;
+            }catch (FalhaRequestException e){
+                result = TaskResults.REQUEST_ERROR;
+                exception = e;
+            }catch (FaltaPermissaoException e){
+                result = TaskResults.MISSING_PERMISSIONS;
+                exception = e;
+            }catch (Exception e){
+                result = TaskResults.UNKNOWN_ERROR;
+                exception = e;
+            }
+            TaskResults finalResult = result;
+            ((Activity) context).runOnUiThread(() -> postExecuteBackground(finalResult));
         });
 
         backgroundThread.start();
     }
 
-    private TaskResults backgroundExecution(){
-        try{
+    private TaskResults backgroundExecution() throws FaltaPermissaoException, FalhaServidorException, FalhaRequestException, IOException{
             return executeBackground();
-        }catch (FalhaServidorException e){
-            return TaskResults.SERVER_ERROR;
-        }catch (FalhaRequestException e){
-            return TaskResults.REQUEST_ERROR;
-        }catch (FaltaPermissaoException e){
-            return TaskResults.MISSING_PERMISSIONS;
-        }catch (Exception e){
-            return TaskResults.UNKNOWN_ERROR;
-        }
     }
 
     private boolean validatePermissions(){
@@ -68,6 +82,35 @@ public abstract class CustomBackgroundTask{
         return true;
     }
 
+    protected void handleException(TaskResults taskResults, Exception e){
+        String title = "";
+        String description = "";
 
+        switch (taskResults){
+            case UNKNOWN_ERROR:
+                title = context.getString(R.string.default_exception_title);
+                description = context.getString(R.string.default_exception_description);
+                break;
+            case MISSING_PERMISSIONS:
+                title = "Falta permissões!";
+                description = "Aparentemente você não concedeu as permissões necessárias para a realização dessa operação";
+                break;
+            case REQUEST_ERROR:
+                title = "Erro na Request";
+                description = "Ocorreu um erro programático que causou uma falha na comunicação entre o App e o Servidor, por favor, contate o suporte.";
+                break;
+            case SERVER_ERROR:
+                title = "Erro no Servidor";
+                description = "Ocorreu um erro no lado de servidor, isso pode ser causado por diversos fatores e por isso recomendamos que entre em contato com o suporte.";
+                break;
+            case IOEXCEPTION:
+                title = "Erro no App";
+                description = "Ocorreu um erro em um funcionamento interno do app. Por favor, tente novamente, se o erro persistir entre em contato com o suporte.";
+                break;
+        }
+
+        ExceptionDialog dialog = new ExceptionDialog(context, title, description, e, this);
+        dialog.show();
+    }
 
 }

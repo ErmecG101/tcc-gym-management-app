@@ -5,5 +5,6 @@ public enum TaskResults{
     SERVER_ERROR,
     REQUEST_ERROR,
     MISSING_PERMISSIONS,
+    IOEXCEPTION,
     UNKNOWN_ERROR
 }

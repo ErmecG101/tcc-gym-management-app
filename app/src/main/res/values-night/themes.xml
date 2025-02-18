@@ -3,5 +3,7 @@
     <style name="Base.Theme.TccGymManagementApp" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <item name="loginBackgroundColorOne">@color/login_background_dark_1</item>
+        <item name="loginBackgroundColorTwo">@color/login_background_dark_2</item>
     </style>
 </resources>

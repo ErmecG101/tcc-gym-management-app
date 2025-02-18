@@ -84,9 +84,9 @@ public class DefaultRequest {
         try (Response response = client.newCall(request).execute()){
             Log.d("Teste","Codigo: "+response.code());
             if(response.code() > 499)
-                throw new FalhaServidorException("Falha no servidor, Erro: "+response.code());
+                throw new FalhaServidorException("Falha no servidor, Erro: "+response.code(), response.code());
             else if(response.code() > 399){
-                throw new FalhaRequestException("Falha na request, Erro: "+response.code());
+                throw new FalhaRequestException("Falha na request, Erro: "+response.code(), response.code());
             }else{
                 if(response.body() != null)
                     return response.body().string();
@@ -94,6 +94,9 @@ public class DefaultRequest {
                     return "{}";
                 }
             }
+        }catch (Exception e){
+            e.printStackTrace();
+            throw e;
         }
     }
 

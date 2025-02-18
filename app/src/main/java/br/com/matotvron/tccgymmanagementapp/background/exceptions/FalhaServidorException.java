@@ -1,7 +1,14 @@
 package br.com.matotvron.tccgymmanagementapp.background.exceptions;
 
 public class FalhaServidorException extends RuntimeException {
-    public FalhaServidorException(String message) {
+
+    final private int responseCode;
+    public FalhaServidorException(String message, int responseCode) {
         super(message);
+        this.responseCode = responseCode;
+    }
+
+    public int getResponseCode() {
+        return responseCode;
     }
 }

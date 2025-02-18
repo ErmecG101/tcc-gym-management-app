@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">TccGymManagementApp</string>
+
+    <string name="default_exception_title">Erro!</string>
+    <string name="default_exception_description">Ocorreu um erro inesperado, por favor contate o suporte.</string>
+    <string name="exception_type_prefix">Nome Erro: </string>
 </resources>

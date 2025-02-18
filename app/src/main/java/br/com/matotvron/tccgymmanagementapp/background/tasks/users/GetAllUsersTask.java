@@ -6,6 +6,8 @@ import android.util.Log;
 
 import java.io.IOException;
 
+import br.com.matotvron.tccgymmanagementapp.background.exceptions.FalhaRequestException;
+import br.com.matotvron.tccgymmanagementapp.background.exceptions.FalhaServidorException;
 import br.com.matotvron.tccgymmanagementapp.background.http.DefaultRequest;
 import br.com.matotvron.tccgymmanagementapp.background.tasks.CustomBackgroundTask;
 import br.com.matotvron.tccgymmanagementapp.background.tasks.TaskResults;
@@ -25,12 +27,20 @@ public class GetAllUsersTask extends CustomBackgroundTask {
 
     @Override
     protected TaskResults executeBackground() throws IOException {
-        bodyJson = requestClient.get(locale);
+        try {
+            bodyJson = requestClient.get(locale);
+        }catch (FalhaRequestException e){
+            if(e.getResponseCode() == 404){
+
+            }
+        }
+
 
         return TaskResults.SUCCESS;
     }
 
     @Override
     protected void postExecuteBackground(TaskResults taskResults) {
+        super.postExecuteBackground(taskResults);
     }
 }
