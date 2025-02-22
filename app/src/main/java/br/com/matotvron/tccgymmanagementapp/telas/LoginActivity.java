@@ -1,5 +1,6 @@
 package br.com.matotvron.tccgymmanagementapp.telas;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.Toast;
@@ -52,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
                 passLayout.setError(null);
             }
 
-
+            startActivity(new Intent(this, PrincipalActivity.class));
         });
     }
 

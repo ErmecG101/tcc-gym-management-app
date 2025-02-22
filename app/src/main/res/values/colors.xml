@@ -3,10 +3,20 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
+    <!--TEMA CLARO ABAIXO-->
+
+    <color name="colorPrimaryWhite">#F97858</color>
+    <color name="colorSecondaryWhite">#6A300B</color>
+    <color name="colorAccentWhite">#7F1806</color>
+
     <color name="login_background_light_1">#FFAAAA</color>
     <color name="login_background_light_2">#FF8888</color>
 
     <!--TEMA ESCURO ABAIXO-->
+
+    <color name="colorPrimaryDark">#A72606</color>
+    <color name="colorSecondaryDark">#F4B995</color>
+    <color name="colorAccentDark">#F99280</color>
 
     <color name="login_background_dark_1">#FF6666</color>
     <color name="login_background_dark_2">#FF4444</color>

@@ -5,6 +5,9 @@
 <!--         <item name="colorPrimary">#FF0000</item>-->
         <item name="loginBackgroundColorOne">@color/login_background_light_1</item>
         <item name="loginBackgroundColorTwo">@color/login_background_light_2</item>
+<!--        <item name="colorPrimary">@color/colorPrimaryWhite</item>-->
+<!--        <item name="colorSecondary">@color/colorSecondaryWhite</item>-->
+<!--        <item name="colorAccent">@color/colorAccentWhite</item>-->
     </style>
 
     <style name="Theme.TccGymManagementApp" parent="Base.Theme.TccGymManagementApp" />
