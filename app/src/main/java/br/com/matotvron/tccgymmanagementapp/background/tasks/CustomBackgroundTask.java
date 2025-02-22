@@ -82,6 +82,11 @@ public abstract class CustomBackgroundTask{
         return true;
     }
 
+    /**
+     * METHOD THAT TRANSLATES FAIL RESULTS INTO ERROR MESSAGES.
+     * @param taskResults RESULT TO BE TRANSLATED
+     * @param e EXCEPTION THROWN
+     */
     protected void handleException(TaskResults taskResults, Exception e){
         String title = "";
         String description = "";
@@ -109,6 +114,17 @@ public abstract class CustomBackgroundTask{
                 break;
         }
 
+        ExceptionDialog dialog = new ExceptionDialog(context, title, description, e, this);
+        dialog.show();
+    }
+
+    /**
+     * METHOD THAT SHOWS CUSTOM TITLES AND DESCRIPTIONS AS ERROR MESSAGE DIALOGS
+     * @param title TITLE TO BE SHOWN
+     * @param description DESCRIPTION TO BE SHOWN
+     * @param e EXCEPTION THROWN
+     */
+    protected void handleException(String title, String description, Exception e){
         ExceptionDialog dialog = new ExceptionDialog(context, title, description, e, this);
         dialog.show();
     }
