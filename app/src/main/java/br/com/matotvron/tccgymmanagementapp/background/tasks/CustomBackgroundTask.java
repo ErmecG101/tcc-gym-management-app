@@ -1,5 +1,6 @@
 package br.com.matotvron.tccgymmanagementapp.background.tasks;
 
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
@@ -7,6 +8,7 @@ import android.content.pm.PackageManager;
 import androidx.core.content.ContextCompat;
 
 import java.io.IOException;
+import java.net.ConnectException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,10 +46,14 @@ public abstract class CustomBackgroundTask{
 
         preExecuteBackground();
         backgroundThread = new Thread(() -> {
+
             TaskResults result;
             try {
                 result = backgroundExecution();
-            }catch (IOException e) {
+            } catch (ConnectException e){
+                result = TaskResults.FAILED_TO_CONNECT;
+                exception = e;
+            } catch (IOException e) {
                 result = TaskResults.IOEXCEPTION;
                 exception = e;
             }catch (FalhaServidorException e){
@@ -59,7 +65,7 @@ public abstract class CustomBackgroundTask{
             }catch (FaltaPermissaoException e){
                 result = TaskResults.MISSING_PERMISSIONS;
                 exception = e;
-            }catch (Exception e){
+            } catch (Exception e){
                 result = TaskResults.UNKNOWN_ERROR;
                 exception = e;
             }
@@ -95,6 +101,10 @@ public abstract class CustomBackgroundTask{
             case UNKNOWN_ERROR:
                 title = context.getString(R.string.default_exception_title);
                 description = context.getString(R.string.default_exception_description);
+                break;
+            case FAILED_TO_CONNECT:
+                title = "Falha ao conectar ao Servidor";
+                description = "Ocorreu um problema ao tentar conectar com o servidor interno.";
                 break;
             case MISSING_PERMISSIONS:
                 title = "Falta permissões!";

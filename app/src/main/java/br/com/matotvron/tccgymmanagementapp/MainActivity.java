@@ -12,7 +12,10 @@ import androidx.core.graphics.Insets;
 import androidx.core.splashscreen.SplashScreen;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.room.Room;
 
+import br.com.matotvron.tccgymmanagementapp.background.AppDatabase;
+import br.com.matotvron.tccgymmanagementapp.background.DatabaseAccess;
 import br.com.matotvron.tccgymmanagementapp.telas.settings.ConfiguracoesActivity;
 import br.com.matotvron.tccgymmanagementapp.telas.debug.DebugActivity;
 
@@ -33,6 +36,9 @@ public class MainActivity extends AppCompatActivity {
         SplashScreen.installSplashScreen(this);
 
         EdgeToEdge.enable(this);
+
+//        AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "gym-stock-db").build();
+//        DatabaseAccess.setDatabase(db);
 
         btnDebugScreen = findViewById(R.id.btnDebugScreen);
         settingsBtn = findViewById(R.id.settingsBtn);
