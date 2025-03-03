@@ -1,16 +1,19 @@
 package br.com.matotvron.tccgymmanagementapp.background.models;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
 import java.util.Objects;
 
-@Entity
+@Entity(tableName = "gym")
 public class Gym implements Serializable {
 
     @PrimaryKey
+    @NonNull
     private String id;
     @ColumnInfo(name = "name")
     private String name;
@@ -24,9 +27,10 @@ public class Gym implements Serializable {
     private String address;
 
     public Gym() {
-
+        id = "";
     }
 
+    @Ignore
     public Gym(String id, String name, String document, String phoneNumber, String email, String address) {
         this.id = id;
         this.name = name;

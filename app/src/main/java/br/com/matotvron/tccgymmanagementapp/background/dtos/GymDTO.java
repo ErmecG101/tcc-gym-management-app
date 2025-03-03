@@ -52,4 +52,14 @@ public class GymDTO implements Serializable {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+
+    @Override
+    public String toString() {
+        return "GymDTO{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", document='" + document + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                '}';
+    }
 }

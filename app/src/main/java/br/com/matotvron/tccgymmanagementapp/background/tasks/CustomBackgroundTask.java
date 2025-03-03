@@ -24,7 +24,7 @@ public abstract class CustomBackgroundTask{
     final protected Context context;
     protected String locale = "";
     private Thread backgroundThread;
-    private Exception exception;
+    protected Exception exception;
     protected String bodyJson;
 
     public CustomBackgroundTask(Context context) {
@@ -122,6 +122,8 @@ public abstract class CustomBackgroundTask{
                 title = "Erro no App";
                 description = "Ocorreu um erro em um funcionamento interno do app. Por favor, tente novamente, se o erro persistir entre em contato com o suporte.";
                 break;
+            default:
+                return;
         }
 
         ExceptionDialog dialog = new ExceptionDialog(context, title, description, e, this);

@@ -16,12 +16,16 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import br.com.matotvron.tccgymmanagementapp.background.DatabaseAccess;
 import br.com.matotvron.tccgymmanagementapp.background.Utils;
 import br.com.matotvron.tccgymmanagementapp.background.exceptions.FalhaRequestException;
 import br.com.matotvron.tccgymmanagementapp.background.exceptions.FalhaServidorException;
 import br.com.matotvron.tccgymmanagementapp.background.exceptions.FaltaPermissaoException;
 import br.com.matotvron.tccgymmanagementapp.background.http.DefaultRequest;
+import br.com.matotvron.tccgymmanagementapp.background.models.Gym;
 import br.com.matotvron.tccgymmanagementapp.background.models.User;
+import br.com.matotvron.tccgymmanagementapp.background.preferences.PreferencesMap;
+import br.com.matotvron.tccgymmanagementapp.background.preferences.UserPreferences;
 import br.com.matotvron.tccgymmanagementapp.background.tasks.CustomBackgroundTask;
 import br.com.matotvron.tccgymmanagementapp.background.tasks.TaskResults;
 
@@ -63,12 +67,25 @@ public class LoginTask extends CustomBackgroundTask {
             String bodyJson = requestClient.post(locale, new Gson().toJson(json));
 
             User user = new Gson().fromJson(bodyJson, User.class);
-            System.out.println(user.toString());
+
+            UserPreferences uPrefs = new UserPreferences(context);
+            uPrefs.salvar(PreferencesMap.PREF_USER_OBJ, user);
+
+            Gym gym = new Gym();
+            gym.setId(user.getGymDTO().getId());
+            gym.setName(user.getGymDTO().getName());
+            gym.setDocument(user.getGymDTO().getDocument());
+            gym.setPhoneNumber(user.getGymDTO().getPhoneNumber());
+
+            DatabaseAccess.getDatabase().gymDAO().insertAll(gym);
+
         }catch (FalhaRequestException e){
             if(e.getResponseCode() == 401){
+                exception = e;
                 return TaskResults.WRONG_CREDENTIALS;
             }
         }catch (Exception e){
+            exception = e;
             return TaskResults.UNKNOWN_ERROR;
         }
         return TaskResults.SUCCESS;

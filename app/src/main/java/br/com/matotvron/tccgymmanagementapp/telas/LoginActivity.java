@@ -46,15 +46,18 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener((v) -> {
             if(userTextInput.getText() == null || userTextInput.getText().toString().isEmpty()){
                 userLayout.setError("Campo não pode ser vazio!");
-                return;
             }else{
                 userLayout.setError(null);
             }
             if(passTextInput.getText() == null || passTextInput.getText().toString().isEmpty()){
                 passLayout.setError("Campo não pode ser vazio!");
-                return;
             }else{
                 passLayout.setError(null);
+            }
+            
+            if(passLayout.getError() != null || userLayout.getError() != null){
+                Toast.makeText(this, "Por favor, preencha os campos.", Toast.LENGTH_SHORT).show();
+                return;
             }
 
             LoginTask task = new LoginTask(this, userTextInput.getText().toString(), passTextInput.getText().toString()){
@@ -65,8 +68,6 @@ public class LoginActivity extends AppCompatActivity {
                         startActivity(new Intent(context, PrincipalActivity.class));
                     }else if(taskResults == TaskResults.WRONG_CREDENTIALS){
                         Toast.makeText(context, "Credenciais erradas.", Toast.LENGTH_SHORT).show();
-                    }else if(taskResults == TaskResults.UNKNOWN_ERROR){
-                        Toast.makeText(context, "Erro desconhecido", Toast.LENGTH_SHORT).show();
                     }
                 }
             };

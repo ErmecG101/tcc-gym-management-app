@@ -37,8 +37,8 @@ public class MainActivity extends AppCompatActivity {
 
         EdgeToEdge.enable(this);
 
-//        AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "gym-stock-db").build();
-//        DatabaseAccess.setDatabase(db);
+        AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "gym-stock-db").build();
+        DatabaseAccess.setDatabase(db);
 
         btnDebugScreen = findViewById(R.id.btnDebugScreen);
         settingsBtn = findViewById(R.id.settingsBtn);

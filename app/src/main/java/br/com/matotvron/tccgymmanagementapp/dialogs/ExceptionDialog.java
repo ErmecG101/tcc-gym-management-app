@@ -1,5 +1,7 @@
 package br.com.matotvron.tccgymmanagementapp.dialogs;
 
+import static android.view.View.INVISIBLE;
+
 import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
@@ -67,7 +69,10 @@ public class ExceptionDialog {
         if(tvExceptionDescription != null)
             tvExceptionDescription.setText(this.exceptionDescription.isEmpty() ? context.getString(R.string.default_exception_description) : this.exceptionDescription);
         if(tvExceptionType != null)
-            tvExceptionType.setText(String.format("%s%s", context.getString(R.string.exception_type_prefix), exception.getClass().getName().toUpperCase()));
+            if(exception != null)
+                tvExceptionType.setText(String.format("%s%s", context.getString(R.string.exception_type_prefix), exception.getClass().getName().toUpperCase()));
+            else
+                tvExceptionType.setVisibility(INVISIBLE);
 
         alertDialog.show();
 
