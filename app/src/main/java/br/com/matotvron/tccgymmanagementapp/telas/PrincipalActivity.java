@@ -22,10 +22,16 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
+import java.util.List;
 import java.util.Objects;
 
 import br.com.matotvron.tccgymmanagementapp.R;
+import br.com.matotvron.tccgymmanagementapp.background.DatabaseAccess;
+import br.com.matotvron.tccgymmanagementapp.background.models.Gym;
+import br.com.matotvron.tccgymmanagementapp.background.preferences.PreferencesMap;
+import br.com.matotvron.tccgymmanagementapp.background.preferences.UserPreferences;
 import br.com.matotvron.tccgymmanagementapp.background.viewpager.PrincipalActivityViewPager;
+import br.com.matotvron.tccgymmanagementapp.telas.settings.ConfiguracoesActivity;
 
 public class PrincipalActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
@@ -78,16 +84,21 @@ public class PrincipalActivity extends AppCompatActivity implements NavigationVi
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
 
-                Toast.makeText(this, "On Menu Up Clicked!", Toast.LENGTH_SHORT).show();
+        int itemId = item.getItemId();
 
-                return true;
-
-            default:
-                return super.onOptionsItemSelected(item);
+        if(itemId == android.R.id.home){
+            Toast.makeText(this, "On Menu Up Clicked!", Toast.LENGTH_SHORT).show();
+            return true;
+        }else if(itemId == R.id.settingsMenuItemToolBar){
+            startActivity(new Intent(this, ConfiguracoesActivity.class));
+            return true;
+        }else if(itemId == R.id.exitMenuItemToolBar){
+            logout();
+            return true;
         }
+
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -100,16 +111,27 @@ public class PrincipalActivity extends AppCompatActivity implements NavigationVi
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
 
-//        if (id == R.id.nav_camera) {
-//            // Handle the camera action
-//        } else if (id == R.id.nav_share) {
-//
-//        } else if (id == R.id.nav_send) {
-//
-//        }
+        if(id == R.id.settingsMenuItem){
+            startActivity(new Intent(this, ConfiguracoesActivity.class));
+            return true;
+        }else if(id == R.id.logOffMenuItem){
+            logout();
+            return true;
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawerLayout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void logout(){
+        try{
+            UserPreferences userPreferences = new UserPreferences(this);
+            userPreferences.apagarPreferences(PreferencesMap.PREF_USER_OBJ);
+            startActivity(new Intent(this, LoginActivity.class));
+            finish();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }

@@ -3,6 +3,7 @@ package br.com.matotvron.tccgymmanagementapp.telas;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -17,10 +18,12 @@ import com.google.android.material.textfield.TextInputLayout;
 import br.com.matotvron.tccgymmanagementapp.R;
 import br.com.matotvron.tccgymmanagementapp.background.tasks.TaskResults;
 import br.com.matotvron.tccgymmanagementapp.background.tasks.users.LoginTask;
+import br.com.matotvron.tccgymmanagementapp.telas.settings.ConfiguracoesActivity;
 
 public class LoginActivity extends AppCompatActivity {
     
     private Button btnLogin;
+    private ImageButton ibSettings;
     private TextInputLayout userLayout, passLayout;
     private TextInputEditText userTextInput, passTextInput;
 
@@ -36,6 +39,8 @@ public class LoginActivity extends AppCompatActivity {
         });
         
         btnLogin = findViewById(R.id.btnLogin);
+
+        ibSettings = findViewById(R.id.ib_settings);
 
         userLayout = findViewById(R.id.tiUser);
         passLayout = findViewById(R.id.tiPass);
@@ -72,6 +77,10 @@ public class LoginActivity extends AppCompatActivity {
                 }
             };
             task.execute();
+        });
+
+        ibSettings.setOnClickListener((v) -> {
+            startActivity(new Intent(this, ConfiguracoesActivity.class));
         });
     }
 

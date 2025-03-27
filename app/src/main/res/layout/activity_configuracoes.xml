@@ -6,13 +6,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".telas.settings.ConfiguracoesActivity"
-    android:layout_margin="16dp"
-    >
+    tools:context=".telas.settings.ConfiguracoesActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tb_settings_activity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:background="?attr/colorOnPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:title="Configurações"
+        app:titleTextColor="?android:textColorPrimary" />
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:layout_margin="16dp">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cvConfigDebug"

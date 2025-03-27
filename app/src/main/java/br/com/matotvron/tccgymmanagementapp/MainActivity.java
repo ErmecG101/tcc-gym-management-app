@@ -16,6 +16,11 @@ import androidx.room.Room;
 
 import br.com.matotvron.tccgymmanagementapp.background.AppDatabase;
 import br.com.matotvron.tccgymmanagementapp.background.DatabaseAccess;
+import br.com.matotvron.tccgymmanagementapp.background.models.User;
+import br.com.matotvron.tccgymmanagementapp.background.preferences.PreferencesMap;
+import br.com.matotvron.tccgymmanagementapp.background.preferences.UserPreferences;
+import br.com.matotvron.tccgymmanagementapp.telas.LoginActivity;
+import br.com.matotvron.tccgymmanagementapp.telas.PrincipalActivity;
 import br.com.matotvron.tccgymmanagementapp.telas.settings.ConfiguracoesActivity;
 import br.com.matotvron.tccgymmanagementapp.telas.debug.DebugActivity;
 
@@ -40,17 +45,23 @@ public class MainActivity extends AppCompatActivity {
         AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "gym-stock-db").build();
         DatabaseAccess.setDatabase(db);
 
-        btnDebugScreen = findViewById(R.id.btnDebugScreen);
-        settingsBtn = findViewById(R.id.settingsBtn);
+        UserPreferences uPref = new UserPreferences(this);
+        User usuario = uPref.obterPreference(PreferencesMap.PREF_USER_OBJ);
+        Intent intentTelaSeguinte;
+        if(usuario.getId() == null || usuario.getId().isEmpty()){
+            intentTelaSeguinte = new Intent(this, LoginActivity.class);
 
-        if(BuildConfig.DEV){
-            AlertDialog dialog = new AlertDialog.Builder(this
-            ).setMessage("Aplicativo em modo DEV!")
-                    .setNeutralButton("Ok",(dialog1, which) -> {}).create();
-            dialog.show();
+        }else{
+            intentTelaSeguinte = new Intent(this, PrincipalActivity.class);
         }
 
-        btnDebugScreen.setOnClickListener((v) -> startActivity(new Intent(getApplicationContext(), DebugActivity.class)));
-        settingsBtn.setOnClickListener((v) -> startActivity(new Intent(getApplicationContext(), ConfiguracoesActivity.class)));
+        startActivity(intentTelaSeguinte);
+        finish();
+
+//        btnDebugScreen = findViewById(R.id.btnDebugScreen);
+//        settingsBtn = findViewById(R.id.settingsBtn);
+//
+//        btnDebugScreen.setOnClickListener((v) -> startActivity(new Intent(getApplicationContext(), DebugActivity.class)));
+//        settingsBtn.setOnClickListener((v) -> startActivity(new Intent(getApplicationContext(), ConfiguracoesActivity.class)));
     }
 }

@@ -1,67 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical"
     android:background="@drawable/login_background"
-    tools:context=".telas.LoginActivity">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_margin="16dp"
-    android:padding="64dp">
+    tools:context=".telas.LoginActivity">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="186dp"
-        android:layout_height="186dp"
-        android:layout_gravity="center|bottom"
-        android:layout_marginBottom="86dp"
-        app:srcCompat="@drawable/ic_launcher_foreground" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tiUser"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        app:boxBackgroundColor="?android:colorBackground">
+        android:layout_height="match_parent"
+        android:layout_margin="16dp"
+        android:orientation="vertical"
+        android:padding="64dp">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tieUser"
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="186dp"
+            android:layout_height="186dp"
+            android:layout_gravity="center|bottom"
+            android:layout_marginBottom="86dp"
+            app:srcCompat="@drawable/ic_launcher_foreground" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tiUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Usuario"
-            android:inputType="text" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginBottom="8dp"
+            app:boxBackgroundColor="?android:colorBackground">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tiPass"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        app:boxBackgroundColor="?android:colorBackground"
-        app:boxBackgroundMode="outline"
-        app:passwordToggleEnabled="true">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tieUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Usuario"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tiePass"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tiPass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Senha"
-            android:inputType="text|textPassword" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginBottom="32dp"
+            app:boxBackgroundColor="?android:colorBackground"
+            app:boxBackgroundMode="outline"
+            app:passwordToggleEnabled="true">
 
-    <Button
-        android:id="@+id/btnLogin"
-        android:layout_width="match_parent"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tiePass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Senha"
+                android:inputType="text|textPassword" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Entrar" />
+
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/ib_settings"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Entrar" />
+        android:layout_gravity="bottom|end"
+        android:layout_margin="8dp"
+        android:background="@android:color/transparent"
+        android:padding="8dp"
+        app:srcCompat="@drawable/baseline_settings_48"
+        app:tint="?android:textColorPrimary"
+        android:foreground="?android:selectableItemBackgroundBorderless"
+        android:focusable="true"
+        android:clickable="true"/>
 
-</LinearLayout>
-
-</LinearLayout>
+</FrameLayout>

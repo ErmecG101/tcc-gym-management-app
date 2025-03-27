@@ -28,6 +28,7 @@ android {
             buildConfigField "boolean", "DEV", "true"
             versionNameSuffix 'debug'
             debuggable true
+            resourcePrefix("[DEV] ")
         }
     }
     compileOptions {
