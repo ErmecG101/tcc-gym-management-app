@@ -28,7 +28,6 @@ android {
             buildConfigField "boolean", "DEV", "true"
             versionNameSuffix 'debug'
             debuggable true
-            resourcePrefix("[DEV] ")
         }
     }
     compileOptions {
@@ -38,11 +37,6 @@ android {
 }
 
 dependencies {
-
-    def room_version = "2.6.1"
-
-    implementation libs.room.runtime
-    annotationProcessor "androidx.room:room-compiler:$room_version"
 
     implementation libs.gson
 

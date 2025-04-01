@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -22,14 +24,13 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
-import java.util.List;
 import java.util.Objects;
 
 import br.com.matotvron.tccgymmanagementapp.R;
-import br.com.matotvron.tccgymmanagementapp.background.DatabaseAccess;
 import br.com.matotvron.tccgymmanagementapp.background.models.Gym;
+import br.com.matotvron.tccgymmanagementapp.background.models.User;
+import br.com.matotvron.tccgymmanagementapp.background.preferences.DefaultPreferences;
 import br.com.matotvron.tccgymmanagementapp.background.preferences.PreferencesMap;
-import br.com.matotvron.tccgymmanagementapp.background.preferences.UserPreferences;
 import br.com.matotvron.tccgymmanagementapp.background.viewpager.PrincipalActivityViewPager;
 import br.com.matotvron.tccgymmanagementapp.telas.settings.ConfiguracoesActivity;
 
@@ -68,6 +69,10 @@ public class PrincipalActivity extends AppCompatActivity implements NavigationVi
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.drawer_nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        View headerView = navigationView.getHeaderView(0);
+        TextView tvGymName = headerView.findViewById(R.id.tv_gym_name);
+        tvGymName.setText(new DefaultPreferences<Gym>(this).obterPreference(PreferencesMap.PREF_GYM_OBJ, Gym.class).getName());
 
         viewPagerPrincipal = findViewById(R.id.viewPagerPrincipal);
         tlPrincipalItems = findViewById(R.id.tlPrincipalItems);
@@ -111,12 +116,16 @@ public class PrincipalActivity extends AppCompatActivity implements NavigationVi
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
 
-        if(id == R.id.settingsMenuItem){
+        if(id == R.id.aboutGymMenuItem){
+
+        }else if(id == R.id.settingsMenuItem){
             startActivity(new Intent(this, ConfiguracoesActivity.class));
             return true;
         }else if(id == R.id.logOffMenuItem){
             logout();
             return true;
+        } else if(id == R.id.aboutUsMenuItem){
+
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawerLayout);
@@ -126,7 +135,7 @@ public class PrincipalActivity extends AppCompatActivity implements NavigationVi
 
     private void logout(){
         try{
-            UserPreferences userPreferences = new UserPreferences(this);
+            DefaultPreferences<User> userPreferences = new DefaultPreferences<>(this);
             userPreferences.apagarPreferences(PreferencesMap.PREF_USER_OBJ);
             startActivity(new Intent(this, LoginActivity.class));
             finish();

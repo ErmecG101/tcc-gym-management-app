@@ -1,12 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item
-        android:id="@+id/settingsMenuItem"
-        android:title="Configurações"/>
+    <group>
+        <item
+            android:id="@+id/aboutGymMenuItem"
+            android:title="Sobre Academia"
+            android:icon="@drawable/baseline_other_houses_24"/>
+        <item
+            android:id="@+id/profileMenuItem"
+            android:title="Perfil"
+            android:icon="@drawable/baseline_person_24"/>
+    </group>
 
-    <item
-        android:id="@+id/logOffMenuItem"
-        android:title="Sair"/>
+    <group>
+        <item
+            android:id="@+id/settingsMenuItem"
+            android:title="Configurações"
+            android:icon="@drawable/baseline_settings_48"/>
 
+        <item
+            android:id="@+id/logOffMenuItem"
+            android:title="Sair"
+            android:icon="@drawable/baseline_exit_to_app_24"/>
+
+    </group>
+
+    <group>
+        <item
+            android:id="@+id/aboutUsMenuItem"
+            android:title="Sobre nós"
+            android:icon="@drawable/baseline_info_24"/>
+    </group>
 </menu>

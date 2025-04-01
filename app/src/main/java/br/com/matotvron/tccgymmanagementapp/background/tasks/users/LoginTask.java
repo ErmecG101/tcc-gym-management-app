@@ -8,15 +8,12 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
-import androidx.core.content.ContextCompat;
-
 import com.google.gson.Gson;
 
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import br.com.matotvron.tccgymmanagementapp.background.DatabaseAccess;
 import br.com.matotvron.tccgymmanagementapp.background.Utils;
 import br.com.matotvron.tccgymmanagementapp.background.exceptions.FalhaRequestException;
 import br.com.matotvron.tccgymmanagementapp.background.exceptions.FalhaServidorException;
@@ -24,6 +21,7 @@ import br.com.matotvron.tccgymmanagementapp.background.exceptions.FaltaPermissao
 import br.com.matotvron.tccgymmanagementapp.background.http.DefaultRequest;
 import br.com.matotvron.tccgymmanagementapp.background.models.Gym;
 import br.com.matotvron.tccgymmanagementapp.background.models.User;
+import br.com.matotvron.tccgymmanagementapp.background.preferences.DefaultPreferences;
 import br.com.matotvron.tccgymmanagementapp.background.preferences.PreferencesMap;
 import br.com.matotvron.tccgymmanagementapp.background.preferences.UserPreferences;
 import br.com.matotvron.tccgymmanagementapp.background.tasks.CustomBackgroundTask;
@@ -68,7 +66,7 @@ public class LoginTask extends CustomBackgroundTask {
 
             User user = new Gson().fromJson(bodyJson, User.class);
 
-            UserPreferences uPrefs = new UserPreferences(context);
+            DefaultPreferences<User> uPrefs = new DefaultPreferences<>(context);
             uPrefs.salvar(PreferencesMap.PREF_USER_OBJ, user);
 
             Gym gym = new Gym();
@@ -77,7 +75,8 @@ public class LoginTask extends CustomBackgroundTask {
             gym.setDocument(user.getGymDTO().getDocument());
             gym.setPhoneNumber(user.getGymDTO().getPhoneNumber());
 
-            DatabaseAccess.getDatabase().gymDAO().insertAll(gym);
+            DefaultPreferences<Gym> gymPrefs = new DefaultPreferences<>(context);
+            gymPrefs.salvar(PreferencesMap.PREF_GYM_OBJ, gym);
 
         }catch (FalhaRequestException e){
             if(e.getResponseCode() == 401){

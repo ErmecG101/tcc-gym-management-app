@@ -3,8 +3,14 @@ package br.com.matotvron.tccgymmanagementapp.background.preferences;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import java.lang.reflect.Type;
+
 import kotlin.NotImplementedError;
 
+
+/**
+ * @deprecated Deprecated. No Need to use Specific Classes. Use {@link DefaultPreferences}
+ */
 public class DebugPreferences extends DefaultPreferences<String>{
 
     public DebugPreferences(Context context) {
@@ -20,7 +26,7 @@ public class DebugPreferences extends DefaultPreferences<String>{
     }
 
     @Override
-    public String obterPreference(String prefKey) {
+    public String obterPreference(String prefKey, Type type) {
         return prefs.getString(prefKey, "");
     }
 

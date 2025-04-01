@@ -6,23 +6,18 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.splashscreen.SplashScreen;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.room.Room;
 
-import br.com.matotvron.tccgymmanagementapp.background.AppDatabase;
-import br.com.matotvron.tccgymmanagementapp.background.DatabaseAccess;
 import br.com.matotvron.tccgymmanagementapp.background.models.User;
+import br.com.matotvron.tccgymmanagementapp.background.preferences.DefaultPreferences;
 import br.com.matotvron.tccgymmanagementapp.background.preferences.PreferencesMap;
 import br.com.matotvron.tccgymmanagementapp.background.preferences.UserPreferences;
 import br.com.matotvron.tccgymmanagementapp.telas.LoginActivity;
 import br.com.matotvron.tccgymmanagementapp.telas.PrincipalActivity;
-import br.com.matotvron.tccgymmanagementapp.telas.settings.ConfiguracoesActivity;
-import br.com.matotvron.tccgymmanagementapp.telas.debug.DebugActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -42,11 +37,8 @@ public class MainActivity extends AppCompatActivity {
 
         EdgeToEdge.enable(this);
 
-        AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "gym-stock-db").build();
-        DatabaseAccess.setDatabase(db);
-
-        UserPreferences uPref = new UserPreferences(this);
-        User usuario = uPref.obterPreference(PreferencesMap.PREF_USER_OBJ);
+        DefaultPreferences<User> uPref = new DefaultPreferences<>(this);
+        User usuario = uPref.obterPreference(PreferencesMap.PREF_USER_OBJ, User.class);
         Intent intentTelaSeguinte;
         if(usuario.getId() == null || usuario.getId().isEmpty()){
             intentTelaSeguinte = new Intent(this, LoginActivity.class);

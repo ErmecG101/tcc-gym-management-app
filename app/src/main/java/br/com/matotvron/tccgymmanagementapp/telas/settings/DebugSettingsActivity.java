@@ -14,6 +14,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import br.com.matotvron.tccgymmanagementapp.R;
 import br.com.matotvron.tccgymmanagementapp.background.preferences.DebugPreferences;
+import br.com.matotvron.tccgymmanagementapp.background.preferences.DefaultPreferences;
 import br.com.matotvron.tccgymmanagementapp.background.preferences.PreferencesMap;
 
 public class DebugSettingsActivity extends AppCompatActivity {
@@ -32,10 +33,10 @@ public class DebugSettingsActivity extends AppCompatActivity {
             return insets;
         });
 
-        DebugPreferences preferences = new DebugPreferences(this);
+        DefaultPreferences<String> preferences = new DefaultPreferences<>(this);
         editIpServidor = findViewById(R.id.editIpServidor);
         btnSalvarServidor = findViewById(R.id.btnSalvarServidor);
-        editIpServidor.setText(preferences.obterPreference(PreferencesMap.PREF_DEBUG_IP));
+        editIpServidor.setText(preferences.obterPreference(PreferencesMap.PREF_DEBUG_IP, String.class));
         btnSalvarServidor.setOnClickListener((v) -> {
             String text = editIpServidor.getText().toString();
             if(text.isEmpty() || text.isBlank()){

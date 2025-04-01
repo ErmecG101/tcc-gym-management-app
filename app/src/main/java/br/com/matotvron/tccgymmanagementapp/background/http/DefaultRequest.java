@@ -20,6 +20,7 @@ import br.com.matotvron.tccgymmanagementapp.background.exceptions.FalhaRequestEx
 import br.com.matotvron.tccgymmanagementapp.background.exceptions.FalhaServidorException;
 import br.com.matotvron.tccgymmanagementapp.background.exceptions.FaltaPermissaoException;
 import br.com.matotvron.tccgymmanagementapp.background.preferences.DebugPreferences;
+import br.com.matotvron.tccgymmanagementapp.background.preferences.DefaultPreferences;
 import br.com.matotvron.tccgymmanagementapp.background.preferences.PreferencesMap;
 import br.com.matotvron.tccgymmanagementapp.telas.settings.ConfiguracoesActivity;
 import okhttp3.MediaType;
@@ -102,8 +103,8 @@ public class DefaultRequest {
 
     protected String validateServerUrl(){
         if(BuildConfig.DEV){
-            DebugPreferences debugPreferences = new DebugPreferences(context);
-            String devIp = debugPreferences.obterPreference(PreferencesMap.PREF_DEBUG_IP);
+            DefaultPreferences<String> debugPreferences = new DefaultPreferences<>(context);
+            String devIp = debugPreferences.obterPreference(PreferencesMap.PREF_DEBUG_IP, String.class);
             if(devIp == null ||devIp.isEmpty() || devIp.isBlank()) {
                 return null;
             }
