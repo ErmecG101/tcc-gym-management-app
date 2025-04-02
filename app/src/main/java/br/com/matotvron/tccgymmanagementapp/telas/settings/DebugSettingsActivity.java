@@ -13,7 +13,6 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import br.com.matotvron.tccgymmanagementapp.R;
-import br.com.matotvron.tccgymmanagementapp.background.preferences.DebugPreferences;
 import br.com.matotvron.tccgymmanagementapp.background.preferences.DefaultPreferences;
 import br.com.matotvron.tccgymmanagementapp.background.preferences.PreferencesMap;
 

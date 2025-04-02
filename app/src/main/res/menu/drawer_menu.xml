@@ -26,9 +26,9 @@
     </group>
 
     <group>
-        <item
-            android:id="@+id/aboutUsMenuItem"
-            android:title="Sobre nós"
-            android:icon="@drawable/baseline_info_24"/>
+<!--        <item-->
+<!--            android:id="@+id/aboutUsMenuItem"-->
+<!--            android:title="Sobre nós"-->
+<!--            android:icon="@drawable/baseline_info_24"/>-->
     </group>
 </menu>

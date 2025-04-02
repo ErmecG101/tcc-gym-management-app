@@ -23,7 +23,6 @@ import br.com.matotvron.tccgymmanagementapp.background.models.Gym;
 import br.com.matotvron.tccgymmanagementapp.background.models.User;
 import br.com.matotvron.tccgymmanagementapp.background.preferences.DefaultPreferences;
 import br.com.matotvron.tccgymmanagementapp.background.preferences.PreferencesMap;
-import br.com.matotvron.tccgymmanagementapp.background.preferences.UserPreferences;
 import br.com.matotvron.tccgymmanagementapp.background.tasks.CustomBackgroundTask;
 import br.com.matotvron.tccgymmanagementapp.background.tasks.TaskResults;
 

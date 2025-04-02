@@ -15,7 +15,6 @@ import androidx.core.view.WindowInsetsCompat;
 import br.com.matotvron.tccgymmanagementapp.background.models.User;
 import br.com.matotvron.tccgymmanagementapp.background.preferences.DefaultPreferences;
 import br.com.matotvron.tccgymmanagementapp.background.preferences.PreferencesMap;
-import br.com.matotvron.tccgymmanagementapp.background.preferences.UserPreferences;
 import br.com.matotvron.tccgymmanagementapp.telas.LoginActivity;
 import br.com.matotvron.tccgymmanagementapp.telas.PrincipalActivity;
 
