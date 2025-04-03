@@ -2,13 +2,24 @@ package br.com.matotvron.tccgymmanagementapp.telas.principaltabfragment;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.List;
+
 import br.com.matotvron.tccgymmanagementapp.R;
+import br.com.matotvron.tccgymmanagementapp.background.models.Equipments;
+import br.com.matotvron.tccgymmanagementapp.background.tasks.TaskResults;
+import br.com.matotvron.tccgymmanagementapp.background.tasks.equipments.GetEquipmentsServerTask;
+import br.com.matotvron.tccgymmanagementapp.telas.adapter.EquipmentAdapter;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -17,50 +28,71 @@ import br.com.matotvron.tccgymmanagementapp.R;
  */
 public class EquipamentosFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private GetEquipmentsServerTask task;
 
     public EquipamentosFragment() {
-        // Required empty public constructor
     }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment SecondFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static EquipamentosFragment newInstance(String param1, String param2) {
         EquipamentosFragment fragment = new EquipamentosFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_equipamentos, container, false);
     }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        buildTask(view);
+        ((SwipeRefreshLayout) view.findViewById(R.id.srl_equipamentos)).setOnRefreshListener(() -> task.execute());
+        task.execute();
+    }
+
+    private void buildTask(View view){
+        task = new GetEquipmentsServerTask(getContext()){
+
+            @Override
+            protected void preExecuteBackground() {
+                view.findViewById(R.id.pb_equipamentos).setVisibility(View.VISIBLE);
+                view.findViewById(R.id.rv_equipamentos).setVisibility(View.GONE);
+                view.findViewById(R.id.tv_nenhum_equip_found).setVisibility(View.GONE);
+                super.preExecuteBackground();
+            }
+
+            @Override
+            protected void postExecuteBackground(TaskResults taskResults) {
+                super.postExecuteBackground(taskResults);
+                view.findViewById(R.id.pb_equipamentos).setVisibility(View.GONE);
+                ((SwipeRefreshLayout) view.findViewById(R.id.srl_equipamentos)).setRefreshing(false);
+                if(taskResults == TaskResults.SUCCESS){
+                    List<Equipments> result = getResult();
+                    if(!result.isEmpty()){
+                        RecyclerView rvEquipamentos = view.findViewById(R.id.rv_equipamentos);
+                        EquipmentAdapter adapter = new EquipmentAdapter(getActivity(), result);
+                        rvEquipamentos.setAdapter(adapter);
+                        LinearLayoutManager layoutManager
+                                = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+                        rvEquipamentos.setLayoutManager(layoutManager);
+                        adapter.notifyItemRangeInserted(0, result.size());
+                        rvEquipamentos.setVisibility(View.VISIBLE);
+                        view.findViewById(R.id.tv_nenhum_equip_found).setVisibility(View.GONE);
+                    }else{
+                        view.findViewById(R.id.rv_equipamentos).setVisibility(View.GONE);
+                        view.findViewById(R.id.tv_nenhum_equip_found).setVisibility(View.VISIBLE);
+                    }
+                }
+            }
+        };
+    }
+
+
 }

@@ -11,7 +11,10 @@ import androidx.core.graphics.Insets;
 import androidx.core.splashscreen.SplashScreen;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.room.Room;
 
+import br.com.matotvron.tccgymmanagementapp.background.database.AppDatabase;
+import br.com.matotvron.tccgymmanagementapp.background.database.DatabaseAccess;
 import br.com.matotvron.tccgymmanagementapp.background.models.User;
 import br.com.matotvron.tccgymmanagementapp.background.preferences.DefaultPreferences;
 import br.com.matotvron.tccgymmanagementapp.background.preferences.PreferencesMap;
@@ -35,6 +38,9 @@ public class MainActivity extends AppCompatActivity {
         SplashScreen.installSplashScreen(this);
 
         EdgeToEdge.enable(this);
+
+        //TRYING TO NOT USE DATABASES.
+//        DatabaseAccess.setDatabase(Room.databaseBuilder(this, AppDatabase.class, "db_iron_stock").build());
 
         DefaultPreferences<User> uPref = new DefaultPreferences<>(this);
         User usuario = uPref.obterPreference(PreferencesMap.PREF_USER_OBJ, User.class);
