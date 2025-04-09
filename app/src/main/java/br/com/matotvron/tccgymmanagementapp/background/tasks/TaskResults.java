@@ -9,5 +9,7 @@ public enum TaskResults{
     UNKNOWN_ERROR,
     WRONG_CREDENTIALS,
     NO_INTERNET,
-    FAILED_TO_CONNECT
+    FAILED_TO_CONNECT,
+    USER_NOT_FOUND,
+    GYM_NOT_FOUND,
 }

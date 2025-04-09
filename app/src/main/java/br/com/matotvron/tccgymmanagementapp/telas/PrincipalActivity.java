@@ -32,6 +32,9 @@ import br.com.matotvron.tccgymmanagementapp.background.models.User;
 import br.com.matotvron.tccgymmanagementapp.background.preferences.DefaultPreferences;
 import br.com.matotvron.tccgymmanagementapp.background.preferences.PreferencesMap;
 import br.com.matotvron.tccgymmanagementapp.background.viewpager.PrincipalActivityViewPager;
+import br.com.matotvron.tccgymmanagementapp.telas.about.gym.AboutGymActivity;
+import br.com.matotvron.tccgymmanagementapp.telas.about.us.AboutUsActivity;
+import br.com.matotvron.tccgymmanagementapp.telas.profile.ProfileActivity;
 import br.com.matotvron.tccgymmanagementapp.telas.settings.ConfiguracoesActivity;
 
 public class PrincipalActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
@@ -85,6 +88,8 @@ public class PrincipalActivity extends AppCompatActivity implements NavigationVi
                     tab.setText(tabTitles[position]);
                     tab.setIcon(tabIcons[position]);
                 }).attach();
+
+        findViewById(R.id.btn_principal_aboutus).setOnClickListener((v) -> startActivity(new Intent(this, AboutUsActivity.class)));
     }
 
     @Override
@@ -117,15 +122,17 @@ public class PrincipalActivity extends AppCompatActivity implements NavigationVi
         int id = item.getItemId();
 
         if(id == R.id.aboutGymMenuItem){
-
+            startActivity(new Intent(this, AboutGymActivity.class));
+            return true;
+        }else if(id == R.id.profileMenuItem){
+            startActivity(new Intent(this, ProfileActivity.class));
+            return true;
         }else if(id == R.id.settingsMenuItem){
             startActivity(new Intent(this, ConfiguracoesActivity.class));
             return true;
         }else if(id == R.id.logOffMenuItem){
             logout();
             return true;
-        } else if(id == R.id.aboutUsMenuItem){
-
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawerLayout);

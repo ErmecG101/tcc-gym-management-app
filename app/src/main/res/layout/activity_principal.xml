@@ -76,17 +76,18 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
                 android:orientation="vertical">
+
                 <Button
-                    android:text="Sobre nós"
-                    android:contentDescription="Sobre Nós"
+                    android:id="@+id/btn_principal_aboutus"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:tooltipText="Sobre nós"
-                    android:layout_weight="1"
-                    android:gravity="start|center_vertical"
-                    android:drawableLeft="@drawable/baseline_info_24"
                     android:layout_margin="16dp"
-                    />
+                    android:layout_weight="1"
+                    android:contentDescription="Sobre Nós"
+                    android:drawableLeft="@drawable/baseline_info_24"
+                    android:gravity="start|center_vertical"
+                    android:text="Sobre nós"
+                    android:tooltipText="Sobre nós" />
                 <TextView
                     android:layout_weight="0"
                     android:id="@+id/aboutUsMenuItem"

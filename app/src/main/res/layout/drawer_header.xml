@@ -8,21 +8,30 @@
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="200dp"
         app:srcCompat="@drawable/ic_launcher_foreground" />
+
+    <View
+        android:id="@+id/div_hor_drawer_top"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="16dp"
+        android:background="?android:attr/listDivider" />
 
     <TextView
         android:id="@+id/tv_gym_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="22sp"
-        android:gravity="center"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:gravity="start"
         android:padding="8dp"
         android:text="_gym_name_"
+        android:textSize="22sp"
         android:textStyle="bold" />
 
     <View
-        android:id="@+id/div_hor_drawer"
+        android:id="@+id/div_hor_drawer_bottom"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="16dp"

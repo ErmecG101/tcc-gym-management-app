@@ -6,4 +6,14 @@
     <string name="exception_type_prefix">Nome Erro: </string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="equip_view_activity_title">Equipamento</string>
+
+    <string name="equip_selected_not_found_toast">Equipamento selecionado não encontrado, favor entrar em contato com o suporte.</string>
+
+    <string name="equip_date_of_acquistion_view">Data da Aquisição: %s</string>
+    <string name="equip_original_value_view">Valor Original: R$ %.2f</string>
+    <string name="equip_current_value_view">Valor Atual R$ %.2f</string>
+    <string name="equip_depreciation_view">Depreciação de: %.2f</string>
+    <string name="equip_durability_view">Durabilidade: %.2f</string>
 </resources>
