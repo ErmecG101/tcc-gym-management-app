@@ -8,5 +8,6 @@
 <!--        <item name="colorPrimary">@color/colorPrimaryDark</item>-->
 <!--        <item name="colorSecondary">@color/colorSecondaryDark</item>-->
 <!--        <item name="colorAccent">@color/colorAccentDark</item>-->
+        <item name="inputBorderColorOne">@color/input_border_color_one_dark</item>
     </style>
 </resources>

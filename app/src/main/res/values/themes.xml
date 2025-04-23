@@ -8,6 +8,7 @@
 <!--        <item name="colorPrimary">@color/colorPrimaryWhite</item>-->
 <!--        <item name="colorSecondary">@color/colorSecondaryWhite</item>-->
 <!--        <item name="colorAccent">@color/colorAccentWhite</item>-->
+        <item name="inputBorderColorOne">@color/input_border_color_one_light</item>
     </style>
 
     <style name="Theme.TccGymManagementApp" parent="Base.Theme.TccGymManagementApp" />

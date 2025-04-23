@@ -10,11 +10,11 @@ import androidx.sqlite.db.SupportSQLiteOpenHelper;
 
 import br.com.matotvron.tccgymmanagementapp.background.daos.EquipmentDAO;
 import br.com.matotvron.tccgymmanagementapp.background.models.EquipmentType;
-import br.com.matotvron.tccgymmanagementapp.background.models.Equipments;
+import br.com.matotvron.tccgymmanagementapp.background.models.Equipment;
 import br.com.matotvron.tccgymmanagementapp.background.models.converters.DateTypeConverter;
 
 @Deprecated
-@Database(entities = {Equipments.class, EquipmentType.class}, version = 1)
+@Database(entities = {Equipment.class, EquipmentType.class}, version = 1)
 @TypeConverters(DateTypeConverter.class)
 public abstract class AppDatabase extends RoomDatabase {
     public abstract EquipmentDAO equipmentDAO();

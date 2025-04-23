@@ -16,15 +16,15 @@ import com.google.gson.Gson;
 import java.util.List;
 
 import br.com.matotvron.tccgymmanagementapp.R;
-import br.com.matotvron.tccgymmanagementapp.background.models.Equipments;
+import br.com.matotvron.tccgymmanagementapp.background.models.Equipment;
 import br.com.matotvron.tccgymmanagementapp.telas.equipment.EquipmentViewActivity;
 
 public class EquipmentAdapter extends RecyclerView.Adapter<MyViewHolder>{
 
-    private final List<Equipments> list;
+    private final List<Equipment> list;
     private final Context context;
 
-    public EquipmentAdapter(Context context, List<Equipments> list) {
+    public EquipmentAdapter(Context context, List<Equipment> list) {
         this.context = context;
         this.list = list;
     }

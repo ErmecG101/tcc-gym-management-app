@@ -16,7 +16,7 @@ import android.view.ViewGroup;
 import java.util.List;
 
 import br.com.matotvron.tccgymmanagementapp.R;
-import br.com.matotvron.tccgymmanagementapp.background.models.Equipments;
+import br.com.matotvron.tccgymmanagementapp.background.models.Equipment;
 import br.com.matotvron.tccgymmanagementapp.background.tasks.TaskResults;
 import br.com.matotvron.tccgymmanagementapp.background.tasks.equipments.GetEquipmentsServerTask;
 import br.com.matotvron.tccgymmanagementapp.telas.adapter.EquipmentAdapter;
@@ -74,7 +74,7 @@ public class EquipamentosFragment extends Fragment {
                 view.findViewById(R.id.pb_equipamentos).setVisibility(View.GONE);
                 ((SwipeRefreshLayout) view.findViewById(R.id.srl_equipamentos)).setRefreshing(false);
                 if(taskResults == TaskResults.SUCCESS){
-                    List<Equipments> result = getResult();
+                    List<Equipment> result = getResult();
                     if(!result.isEmpty()){
                         RecyclerView rvEquipamentos = view.findViewById(R.id.rv_equipamentos);
                         EquipmentAdapter adapter = new EquipmentAdapter(getActivity(), result);

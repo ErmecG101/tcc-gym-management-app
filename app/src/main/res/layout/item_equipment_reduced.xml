@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cv_item_equip_reduced"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:orientation="vertical"
+    android:foreground="?attr/selectableItemBackgroundBorderless"
+    app:cardCornerRadius="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/tv_equip_name_reduced"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:text="Equipment Long Name"
+            android:textSize="22sp" />
+
+        <TextView
+            android:id="@+id/tv_equip_code_reduced"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:text="#7753"
+            android:textSize="12sp" />
+
+        <ImageView
+            android:id="@+id/iv_delete_btn"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_margin="4dp"
+            android:layout_weight="0"
+            android:padding="4dp"
+            app:tint="#f5111d"
+            app:srcCompat="@drawable/baseline_delete_24"
+            android:foreground="?attr/selectableItemBackgroundBorderless"/>
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

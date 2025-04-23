@@ -7,16 +7,16 @@ import androidx.room.Query;
 
 import java.util.List;
 
-import br.com.matotvron.tccgymmanagementapp.background.models.Equipments;
+import br.com.matotvron.tccgymmanagementapp.background.models.Equipment;
 
 @Dao
 public interface EquipmentDAO {
     @Insert
-    void insertAll(Equipments... equipments);
+    void insertAll(Equipment... equipment);
 
     @Delete
-    void delete(Equipments equipments);
+    void delete(Equipment equipment);
 
     @Query("SELECT * FROM equipments")
-    List<Equipments> getAll();
+    List<Equipment> getAll();
 }

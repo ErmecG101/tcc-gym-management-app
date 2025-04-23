@@ -3,21 +3,20 @@ package br.com.matotvron.tccgymmanagementapp.background.models;
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
-import androidx.room.TypeConverters;
 
 import java.io.Serializable;
 import java.util.Date;
 
 import br.com.matotvron.tccgymmanagementapp.background.dtos.GymDTO;
-import br.com.matotvron.tccgymmanagementapp.background.models.converters.DateTypeConverter;
 
 
 @Entity(tableName = "equipments")
-public class Equipments implements Serializable {
+public class Equipment implements Serializable {
 
-    @NonNull
     @PrimaryKey
+    @NonNull
     private String id;
     @ColumnInfo(name = "name")
     private String name;
@@ -41,10 +40,12 @@ public class Equipments implements Serializable {
     @ColumnInfo(name = "gymDTO")
     private GymDTO gymDTO;
 
-    public Equipments() {
+    public Equipment() {
+        id = "";
     }
 
-    public Equipments(@NonNull String id, String name, String description, String propertyNumber, Date purchaseDate, Double originalValue, Double currentValue, Double depreciationPercentage, Double durability, EquipmentType equipmentType, GymDTO gymDTO) {
+    @Ignore
+    public Equipment(@NonNull String id, String name, String description, String propertyNumber, Date purchaseDate, Double originalValue, Double currentValue, Double depreciationPercentage, Double durability, EquipmentType equipmentType, GymDTO gymDTO) {
         this.id = id;
         this.name = name;
         this.description = description;

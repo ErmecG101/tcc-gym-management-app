@@ -1,6 +1,5 @@
 package br.com.matotvron.tccgymmanagementapp.telas.equipment;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -18,7 +17,7 @@ import com.google.gson.Gson;
 import java.text.SimpleDateFormat;
 
 import br.com.matotvron.tccgymmanagementapp.R;
-import br.com.matotvron.tccgymmanagementapp.background.models.Equipments;
+import br.com.matotvron.tccgymmanagementapp.background.models.Equipment;
 
 public class EquipmentViewActivity extends AppCompatActivity {
 
@@ -52,7 +51,7 @@ public class EquipmentViewActivity extends AppCompatActivity {
 
     }
     private void assignValues(){
-        Equipments equipment = new Gson().fromJson(getIntent().getStringExtra("equipment"), Equipments.class);
+        Equipment equipment = new Gson().fromJson(getIntent().getStringExtra("equipment"), Equipment.class);
 
         tvEquipName.setText(equipment.getName());
         tvEquipPropertyNumber.setText(equipment.getPropertyNumber());

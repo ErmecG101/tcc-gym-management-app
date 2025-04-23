@@ -2,4 +2,6 @@
 <resources>
     <attr name="loginBackgroundColorOne" format="reference|color"/>
     <attr name="loginBackgroundColorTwo" format="reference|color"/>
+
+    <attr name="inputBorderColorOne" format="reference|color"/>
 </resources>
