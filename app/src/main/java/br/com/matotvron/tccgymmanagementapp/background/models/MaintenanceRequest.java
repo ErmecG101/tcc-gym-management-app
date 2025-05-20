@@ -19,7 +19,7 @@ public class MaintenanceRequest {
     private MaintenanceDTO maintenanceDTO;
     private UserDTO userDTO;
 
-    private List<Equipment> equipment = new ArrayList<>();
+    private List<Equipment> equipments = new ArrayList<>();
     private List<MaintenanceDTO> maintenances = new ArrayList<>();
     private List<MaintenanceRepairService> services = new ArrayList<>();
     private List<String> conditions = new ArrayList<>();
@@ -96,12 +96,12 @@ public class MaintenanceRequest {
         this.userDTO = userDTO;
     }
 
-    public List<Equipment> getEquipment() {
-        return equipment;
+    public List<Equipment> getEquipments() {
+        return equipments;
     }
 
-    public void setEquipment(List<Equipment> equipment) {
-        this.equipment = equipment;
+    public void setEquipments(List<Equipment> equipments) {
+        this.equipments = equipments;
     }
 
     public List<MaintenanceDTO> getMaintenances() {

@@ -1,7 +1,9 @@
 package br.com.matotvron.tccgymmanagementapp.telas.relatorios;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -13,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -34,6 +37,7 @@ public class SelecionarEquipamentosActivity extends AppCompatActivity {
     SwipeRefreshLayout swpRefreshEquipsSelect;
     TextView tvNoEquipsFound;
     GetEquipmentsServerTask task;
+    FloatingActionButton fabSubmitSelectedItems;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,13 +55,24 @@ public class SelecionarEquipamentosActivity extends AppCompatActivity {
         if(getIntent().hasExtra("currAddedEquipList")){
             Type listType = new TypeToken<List<Equipment>>(){}.getType();
             String listFromExtra = getIntent().getStringExtra("currAddedEquipList");
+            Log.d("AAAB", "Json RECEIVED: "+listFromExtra);
             Gson g = new Gson();
             currAddedEquips.addAll(Objects.requireNonNull(g.fromJson(listFromExtra, listType)));
         }
 
         rvItemsSelectToAdd = findViewById(R.id.rv_select_equips_to_add);
         rvItemsSelectToAdd.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        adapter = new EquipmentReducedSelectableAdapter(this, new ArrayList<>(), true);
+
+        fabSubmitSelectedItems = findViewById(R.id.fab_submit_add_equips);
+        fabSubmitSelectedItems.setOnClickListener((v) -> {
+            Intent i = new Intent();
+            i.putExtra("currAddedEquipList", new Gson().toJson(adapter.getCurrAddedEquips()));
+            setResult(SelecionarEquipamentosActivity.RESULT_OK,  i);
+            finish();
+        });
+
+        adapter = new EquipmentReducedSelectableAdapter(this, new ArrayList<>(), true, currAddedEquips);
+
         rvItemsSelectToAdd.setAdapter(adapter);
         swpRefreshEquipsSelect = findViewById(R.id.swp_refresh_equips_select);
         tvNoEquipsFound = findViewById(R.id.tv_no_equips_found);
