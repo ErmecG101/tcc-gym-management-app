@@ -25,10 +25,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
-                android:background="?attr/colorOnPrimary"
+                android:background="?attr/colorPrimary"
                 android:minHeight="?attr/actionBarSize"
                 android:theme="?attr/actionBarTheme"
-                app:menu="@menu/principal_toolbar_menu"
                 app:title="@string/app_name"
                 app:titleTextColor="?android:textColorPrimary" />
 
@@ -49,18 +48,15 @@
 
                 <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Monday" />
+                    android:layout_height="wrap_content" />
 
                 <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Tuesday" />
+                    android:layout_height="wrap_content"/>
 
                 <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Wednesday" />
+                    android:layout_height="wrap_content" />
             </com.google.android.material.tabs.TabLayout>
         </LinearLayout>
 
@@ -83,17 +79,17 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
                     android:layout_weight="1"
-                    android:contentDescription="Sobre Nós"
+                    android:textColor="?android:attr/textColor"
+                    android:contentDescription=""
                     android:drawableLeft="@drawable/baseline_info_24"
                     android:gravity="start|center_vertical"
-                    android:text="Sobre nós"
-                    android:tooltipText="Sobre nós" />
+                    android:text="@string/about_us" />
                 <TextView
                     android:layout_weight="0"
                     android:id="@+id/aboutUsMenuItem"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Copyright 2025₢"
+                    android:text="@string/copyright"
                     android:gravity="center"
                     android:layout_marginBottom="8dp"/>
             </LinearLayout>

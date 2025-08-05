@@ -16,4 +16,13 @@
     <string name="equip_current_value_view">Valor Atual R$ %.2f</string>
     <string name="equip_depreciation_view">Depreciação de: %.2f</string>
     <string name="equip_durability_view">Durabilidade: %.2f</string>
+    <string name="no_reports_found">Nenhum relatório encontrado</string>
+    <string name="insert_report">Cadastrar Relatório</string>
+    <string name="copyright">Copyright 2025₢</string>
+    <string name="about_us">Sobre Nós</string>
+    <string name="about_us_content">Somos dedicados a gerência dos equipamentos de academia tendo como visão diminuir custos desnecessários que poderiam ser causados por desconhecimento e falta de informações. Sempre estaremos dispostos a melhorar nossos serviços e oferecer qualidade aos nossos clientes.</string>
+    <string name="thanks_for_the_preference">Obrigado pela preferência.</string>
+    <string name="login_btn">Entrar</string>
+    <string name="pwd_hint">Senha</string>
+    <string name="usr_hint">Usuario</string>
 </resources>

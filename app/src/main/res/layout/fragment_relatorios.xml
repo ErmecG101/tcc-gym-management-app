@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:text="Nenhum relatório encontrado" />
+            android:text="@string/no_reports_found" />
     </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -28,8 +28,10 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="12dp"
         android:clickable="true"
-        android:contentDescription="Cadastrar Relatório"
+        android:contentDescription="@string/insert_report"
         android:focusable="true"
-        android:src="@drawable/baseline_add_24" />
+        android:src="@drawable/baseline_add_24"
+        app:backgroundTint="?android:attr/colorPrimary"
+        app:rippleColor="?android:attr/colorAccent" />
 
 </FrameLayout>

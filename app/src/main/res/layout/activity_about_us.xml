@@ -12,7 +12,7 @@
         android:id="@+id/toolbar_about_us_act"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorOnPrimary"
+        android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:title="@string/app_name"
@@ -36,7 +36,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Sobre nós"
+            android:text="@string/about_us"
             android:textSize="22sp"
             android:textStyle="bold" />
 
@@ -45,7 +45,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Somos dedicados a gerência dos equipamentos de academia tendo como visão diminuir custos desnecessários que poderiam ser causados por desconhecimento e falta de informações. Sempre estaremos dispostos a melhorar nossos serviços e oferecer qualidade aos nossos clientes." />
+            android:text="@string/about_us_content" />
 
         <TextView
             android:id="@+id/textView2"
@@ -53,8 +53,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:gravity="center"
-            android:text="Obrigado pela preferência."
-            android:textSize="16dp" />
+            android:text="@string/thanks_for_the_preference"
+            android:textSize="16sp" />
 
     </LinearLayout>
 
@@ -67,9 +67,8 @@
 
         <ImageView
             android:id="@+id/imageView3"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             app:srcCompat="@drawable/baseline_home_24" />
     </LinearLayout>
 

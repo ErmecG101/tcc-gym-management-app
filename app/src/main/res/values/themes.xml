@@ -5,10 +5,19 @@
 <!--         <item name="colorPrimary">#FF0000</item>-->
         <item name="loginBackgroundColorOne">@color/login_background_light_1</item>
         <item name="loginBackgroundColorTwo">@color/login_background_light_2</item>
-<!--        <item name="colorPrimary">@color/colorPrimaryWhite</item>-->
-<!--        <item name="colorSecondary">@color/colorSecondaryWhite</item>-->
-<!--        <item name="colorAccent">@color/colorAccentWhite</item>-->
+        <item name="colorPrimary">@color/colorPrimaryWhite</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryWhite</item>
+        <item name="colorSecondary">@color/colorSecondaryWhite</item>
+        <item name="colorAccent">@color/colorAccentWhite</item>
+        <item name="background">@color/background_white</item>
         <item name="inputBorderColorOne">@color/input_border_color_one_light</item>
+        <item name="colorOnPrimary">@color/colorPrimaryWhite</item>
+        <item name="colorOnBackground">@color/background_white</item>
+        <item name="android:statusBarColor">@color/colorPrimaryDark</item>
+        <item name="android:textColor">@color/text_light</item>
+        <item name="android:textColorPrimary">@color/text_light</item>
+        <item name="android:textColorHighlight">@color/text_light</item>
+        <item name="android:textColorSecondary">@color/text_light</item>
     </style>
 
     <style name="Theme.TccGymManagementApp" parent="Base.Theme.TccGymManagementApp" />
