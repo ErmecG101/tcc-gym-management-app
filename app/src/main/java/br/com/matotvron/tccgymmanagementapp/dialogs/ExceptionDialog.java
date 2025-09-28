@@ -34,10 +34,6 @@ public class ExceptionDialog {
 
     public void show() {
 
-        Log.d("TESTEAAAAA", "Titulo: "+exceptionTitle);
-        Log.d("TESTEAAAAA", "Descrição: "+exceptionDescription);
-        Log.d("TESTEAAAAA", "Exception: "+exception);
-        Log.d("TESTEAAAAA", "CustomBackgroundTask: "+customBackgroundTask);
         LayoutInflater inflater = ((Activity) context).getLayoutInflater();
         View dialogView = inflater.inflate(R.layout.dialog_exception, null);
         AlertDialog alertDialog = new AlertDialog.Builder(context)

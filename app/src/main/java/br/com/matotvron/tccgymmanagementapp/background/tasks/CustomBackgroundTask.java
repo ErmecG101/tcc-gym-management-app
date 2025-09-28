@@ -22,6 +22,7 @@ public abstract class CustomBackgroundTask{
 
     final protected List<String> requiredPermissions = new ArrayList<>();
     final protected Context context;
+    protected final String SPRING_BOOT_DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSSZ";
     protected String locale = "";
     private Thread backgroundThread;
     protected Exception exception;

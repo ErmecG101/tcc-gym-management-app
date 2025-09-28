@@ -25,4 +25,9 @@
     <string name="login_btn">Entrar</string>
     <string name="pwd_hint">Senha</string>
     <string name="usr_hint">Usuario</string>
+    <string name="report_pending_text">Pending</string>
+    <string name="report_approved_text">Pending</string>
+    <string name="report_user">Reportado por %s</string>
+    <string name="report_date">Reportado em %s</string>
+    <string name="report_details">Total of %d Equipments reported</string>
 </resources>

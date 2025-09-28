@@ -8,6 +8,7 @@ import android.util.Log;
 import androidx.core.content.ContextCompat;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -48,7 +49,7 @@ public class SubmitMaintenanceRequestTask extends CustomBackgroundTask {
         User user = new DefaultPreferences<User>(context).obterPreference(PreferencesMap.PREF_USER_OBJ, User.class);
         UserDTO uDto = new UserDTO(user);
         maintenanceRequest.setUserDTO(uDto);
-        String json = new Gson().toJson(maintenanceRequest);
+        String json = new GsonBuilder().setDateFormat(SPRING_BOOT_DATE_FORMAT).create().toJson(maintenanceRequest);;
         Log.d("AAAB", "json: "+json);
         requestClient.post(this.locale, json);
         return TaskResults.SUCCESS;

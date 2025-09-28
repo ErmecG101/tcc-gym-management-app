@@ -102,6 +102,7 @@ public class EquipmentReducedSelectableAdapter extends RecyclerView.Adapter<Equi
 
     private void toggleSelectBackground(CardView cv, Equipment selectedItem){
         Log.d("AAAB", "TOGGLESELECTBACKGROUND: "+currAddedEquips.contains(selectedItem));
+        //todo: corrigir cores de itens selecionados.
         if(currAddedEquips.contains(selectedItem)){
             cv.setBackgroundColor(Color.parseColor("#AA8888"));
         }else{
